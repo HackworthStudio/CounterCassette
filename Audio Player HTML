@@ -1,0 +1,10 @@
+<div class="audio-wrapper">
+  <button id="playPauseBtn" class="play-pause-btn">Play</button>
+  <input type="range" id="progressBar" value="0" step="1" min="0">
+  <div id="currentTime">0:00</div>
+  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1">
+  <audio id="audioPlayer">
+    <source src="https://freight.cargo.site/m/E2332612694828211208224310560610/Coal-Miner-s-Daughter.mp3" type="audio/mpeg">
+ &nbsp; &nbsp;Your browser does not support the audio element.
+ &nbsp;</audio>
+</div>
