@@ -1,0 +1,63 @@
+<script>
+  // Video scrolling behavior
+  window.addEventListener('scroll', function() {
+    const video = document.getElementById('scrollVideo');
+    if (!video) return;
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollFraction = scrollTop / docHeight;
+
+    if (!isNaN(video.duration)) {
+      video.currentTime = video.duration * scrollFraction;
+    }
+  });
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const audio = document.getElementById("audioPlayer");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const progressBar = document.getElementById("progressBar");
+  const currentTimeDisplay = document.getElementById("currentTime");
+  const volumeControl = document.getElementById("volumeControl");
+
+  // Play/Pause functionality
+  playPauseBtn.addEventListener("click", function () {
+    if (audio.paused) {
+      audio.play();
+      playPauseBtn.textContent = "Pause";
+    } else {
+      audio.pause();
+      playPauseBtn.textContent = "Play";
+    }
+  });
+
+  // Update progress bar and current time as audio plays
+  audio.addEventListener("timeupdate", function () {
+    progressBar.value = audio.currentTime;
+    currentTimeDisplay.textContent = formatTime(audio.currentTime);
+  });
+
+  // Set progress bar max value when audio metadata is loaded
+  audio.addEventListener("loadedmetadata", function () {
+    progressBar.max = audio.duration;
+  });
+
+  // Seek audio to the position selected on the progress bar
+  progressBar.addEventListener("input", function () {
+    audio.currentTime = progressBar.value;
+  });
+
+  // Update volume based on volume control slider
+  volumeControl.addEventListener("input", function () {
+    audio.volume = volumeControl.value;
+  });
+
+  // Format time (minutes:seconds)
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+    return `${minutes}:${secs}`;
+  }
+});
+</script>
